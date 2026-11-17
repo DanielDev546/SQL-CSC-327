@@ -92,4 +92,45 @@ console.log("Total students:", result.total);
 
 // 7. Close connection
 
+console.log("\n========== QUERY RESULTS ==========");
+
+// 1. List all male students
+const males = db
+  .query(
+    `
+    SELECT * FROM students
+    WHERE gender = 'Male'
+`,
+  )
+  .all();
+
+console.log("\n1. ALL MALE STUDENTS");
+console.table(males);
+
+// 2. Scores greater than 70
+const highScores = db
+  .query(
+    `
+    SELECT * FROM students
+    WHERE csc_327_score > 70
+`,
+  )
+  .all();
+
+console.log("\n2. STUDENTS WITH SCORES ABOVE 70");
+console.table(highScores);
+
+// 3. Scores less than 40
+const lowScores = db
+  .query(
+    `
+    SELECT * FROM students
+    WHERE csc_327_score < 40
+`,
+  )
+  .all();
+
+console.log("\n3. STUDENTS WITH SCORES BELOW 40");
+console.table(lowScores);
+
 db.close();
